@@ -1,0 +1,32 @@
+common:
+  backbone: pointnet
+  checkpoints: ./checkpoints/pointnet/best_model.pth
+  save_dir: ./results
+  seq_path: /home/yu/NAS/Airplane/real_airplane/Data/20201017_121903_DEFAULT-A320-200
+  gt_type: A320-200
+  batch_test: False
+  batch_dir: None
+
+classification:
+  workers: 0 # number of data loading workers
+
+noselocation:
+  bin_file: None
+
+scene_seg:
+  ground_height: -4
+  begin: 700 # the begin frame for scene segmantation
+  end: 900 # the end frame for scene segmantation
+  simulation: False # whether the data is simulation data or real data
+  angle: [-0.5, 0, -2.5] # the angle of inclination
+  has_bridge: True # whether bridge is in the scene
+  cluseter_distance: 10 # the distance setted in hierarchy cluster
+  eps: 4
+  min_samples: 20 # One point will be regarded as outlier if the number of points in the distance of "eps" are lower than "min_samples"
+  min_nums: 30 # after DBSCAN, the classes whose points number is lower than min_nums will be ignored
+  gt_ref: 0.5 # In the stage of get the range of bridge, these points whose heght is lower than z.mean() + gt_ref will be croped
+  cut_height: 2 # to get airplane, the points whose height is lower than ground_height + cut_height will be cutted。（the majority of those points is car and people）
+  enlarge_min: [2,2,2] # enlarge the prior frame airplane box to restrict the range of airplane in current frame.
+  enlarge_max: [10,2,2] # the box will be enlarged "enlarge_min" in negative axis and "enlarge_max" in positive axis
+
+

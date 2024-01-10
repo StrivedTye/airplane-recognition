@@ -1,0 +1,47 @@
+1. version 0.0
+   New file structure has been designed for efficient work. Tye. 2020/11/30
+
+2. version 0.1
+   TestNoseLocation.py: [modified from TestHeadSegmentation.py] Mark, 2020/12/2
+   util.make_video.py: [create]  Mark, 2020/12/2
+   TestClassification.py: [modify] Mark, 2020/12/2
+
+   Note 1: voting under equivalence class TO BE ADDED in TestClassification.py.
+   Note 2: Dynamic updating mode is applied in both TestNoseLocation.py and TestClassification.py
+
+3. version 0.2
+   main.py: [created] Tye, 2020/12/03, automatically record results by log file.
+   dataset.py [modified] Tye, 2020/12/03, merge "get_yaw" into the body of the "PlaneDataset" CLASS.
+   The project is re-organized and now can conduct classifying and locating automatically.
+   Some modifications have been made to adapt to current version, especially CLASS in TestClassification.py and SegmentScene.py
+
+4. version 0.3
+   pointnet.py: [modified] Tye, 2020/12/04,
+     add "PointNetClsSeg" CLASS,
+     change the way of extracting point-wise features
+
+   dgcnn.py: [modified] Tye, 2020/12/04,
+     add "DGCNNClsSeg" CLASS,
+     change the way of extracting global and point-wise features
+
+   net.py: [modified] Tye, 2020/12/04,
+     define the cls-head and seg-head in different backbones,
+     rewrite the "get_loss" CLASS, where we add the smoothed cross-entropy loss
+
+   stn.py: [created] Tye, 2020/12/04,
+     it contains the subnetworks for transformation. "STN3d", "STNkd" and "TransformNet" are declared.
+     "TransformNet" is a special version designed for DGCNN.
+
+   parts_gt.py: [created] Mark, 2020/12/04,
+     it receives part labels and return the form suiting CE Loss of point-wise classification.
+
+5 version 0.4
+  TestPartSegmentation.py [created] Mark, 2020/12/05,
+  this file is added for eval multi-parts segmentation and its visualization
+
+  TestNoseLocation.py [modified] Mark, 2020/12/05,
+  The original predicted_head is substituted to suit the multi-parts segmentation
+
+  Note: the new cls loss raise errors (solved by Ybb)
+  Note: if we load gt in dataloader, it suffers from .bin loading error
+  Note: 

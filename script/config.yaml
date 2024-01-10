@@ -1,0 +1,7 @@
+ground_high: -4
+begin: 700
+end: 900
+simulation: False
+angle: [-0.5, 0, -2.5]
+
+
